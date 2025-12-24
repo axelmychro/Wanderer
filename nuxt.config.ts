@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'netlify'
+    preset: 'vercel'
   },
 
   css: ['~/assets/css/main.css'],
