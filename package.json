@@ -23,7 +23,10 @@
     "nuxt": "^4.2.2"
   },
   "devDependencies": {
+    "@iconify/utils": "^3.1.0",
     "@nuxt/eslint": "^1.12.1",
+    "@nuxt/icon": "^2.1.1",
+    "@vueuse/core": "^14.1.0",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.7.4",
