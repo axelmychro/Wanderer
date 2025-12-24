@@ -1,9 +1,8 @@
 [build]
   command = "pnpm install && pnpm build"
-  functions = ".netlify/functions"
-  publish = ".output/public"
+  functions = ".netlify/functions-internal"
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/.netlify/functions/server"
   status = 200
