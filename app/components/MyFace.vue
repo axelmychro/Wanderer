@@ -16,7 +16,7 @@
         target: '_blank',
         icon: 'i-lucide-mail',
         color: 'primary',
-        variant: 'subtle',
+        variant: 'soft',
         size: 'xl'
       },
       {
@@ -24,7 +24,7 @@
         target: '_blank',
         icon: 'i-lucide-linkedin',
         color: 'primary',
-        variant: 'subtle',
+        variant: 'soft',
         size: 'xl'
       },
       {
@@ -32,7 +32,7 @@
         target: '_blank',
         icon: 'i-mingcute-github-line',
         color: 'primary',
-        variant: 'subtle',
+        variant: 'soft',
         size: 'xl'
       },
       {
@@ -40,7 +40,7 @@
         target: '_blank',
         icon: 'i-mingcute-instagram-line',
         color: 'primary',
-        variant: 'subtle',
+        variant: 'soft',
         size: 'xl'
       },
       {
@@ -48,7 +48,7 @@
         target: '_blank',
         icon: 'i-mingcute-spotify-line',
         color: 'primary',
-        variant: 'subtle',
+        variant: 'soft',
         size: 'xl'
       }
     ]"

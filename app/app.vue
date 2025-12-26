@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import { icons } from '@iconify-json/lucide/index.js'
   import type { NavigationMenuItem } from '@nuxt/ui'
   import * as locales from '@nuxt/ui/locale'
 
@@ -64,6 +63,8 @@
     }
     return 'Toggle color mode'
   })
+
+  const { postLabels, activePostLabel } = usePosts()
 </script>
 
 <template>
@@ -119,17 +120,36 @@
         </UHeader>
       </UPageHeader>
 
-      <UPageBody
-        class="flex min-h-[200vh] w-full justify-center space-y-0 pb-0"
-      >
+      <UPageBody class="flex w-full justify-center space-y-0 pb-0">
         <UMain class="grid w-full max-w-6xl gap-4 lg:grid-cols-[auto_1fr]">
-          <section class="space-y-4">
-            <NuxtPage />
-          </section>
+          <NuxtPage />
 
           <section class="space-y-4 lg:order-first">
             <MyFace />
-            <UPageCard title="yo" description="gurt" class="mb-0" />
+            <div class="relative h-full">
+              <UPageCard
+                class="sticky top-4"
+                :ui="{ description: 'flex flex-wrap gap-2' }"
+                title="Labels"
+              >
+                <template #description>
+                  <UButton
+                    v-for="{ label, count } in postLabels"
+                    :key="label"
+                    size="xs"
+                    variant="soft"
+                    :color="activePostLabel === label ? 'success' : 'neutral'"
+                    @click="
+                      activePostLabel === label
+                        ? (activePostLabel = null)
+                        : (activePostLabel = label)
+                    "
+                  >
+                    {{ label }} ({{ count }})
+                  </UButton>
+                </template>
+              </UPageCard>
+            </div>
           </section>
         </UMain>
       </UPageBody>
