@@ -1,7 +1,7 @@
 <script setup lang="ts">
   const { getPostBySlug } = usePosts()
 
-  const slug = 'a-social-repose'
+  const slug = 'my-unemployed-romance'
   const post = getPostBySlug(slug)
 
   if (post) {
@@ -21,20 +21,9 @@
 </script>
 
 <template>
-  <UBlogPost
-    :ui="{
-      root: 'bg-default rounded-xl',
-      image: 'object-contain',
-      footer: 'p-4 sm:p-6'
-    }"
-    :badge="post?.badge"
-    :image="post?.image"
-    :date="post?.date"
+  <UPageSection
+    :ui="{ root: 'bg-default rounded-xl' }"
     :title="post?.title"
     :description="post?.description"
-  >
-    <template #footer>
-      <p>markdowns!!</p>
-    </template>
-  </UBlogPost>
+  />
 </template>

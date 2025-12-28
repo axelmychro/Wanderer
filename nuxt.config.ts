@@ -11,8 +11,16 @@ export default defineNuxtConfig({
   ],
 
   ssr: true,
+
   devtools: {
     enabled: true
+  },
+
+  app: {
+    pageTransition: {
+      name: 'page',
+      mode: 'default'
+    }
   },
 
   css: ['~/assets/css/main.css'],
@@ -60,5 +68,5 @@ export default defineNuxtConfig({
     defaultLocale: 'en'
   },
 
-  image: { quality: 50, format: ['webp'] },
+  image: { quality: 50, format: ['webp'] }
 })

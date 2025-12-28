@@ -8,11 +8,19 @@ export const usePosts = () => {
     dev: {
       label: 'dev',
       color: 'primary',
-      variant: 'outline'
+      variant: 'solid'
     }
   } as const
 
   const posts = ref([
+    {
+      badge: tags.other,
+      image: '/posts/hello_world/image.png',
+      date: '2025-12-25',
+      title: 'hello world!',
+      description: 'this is the first post, everything a work in progress~',
+      to: '/posts/hello-world'
+    },
     {
       badge: tags.other,
       image: '/posts/a_social_repose/image.png',
@@ -22,12 +30,12 @@ export const usePosts = () => {
       to: '/posts/a-social-repose'
     },
     {
-      badge: tags.other,
-      image: '/posts/hello_world/image.png',
-      date: '2025-12-25',
-      title: 'hello world!',
-      description: 'this is the first post, everything a work in progress~',
-      to: '/posts/hello-world'
+      badge: tags.dev,
+      image: '/posts/my_unemployed_romance/image.png',
+      date: '2025-12-27',
+      title: 'my unemployed romance',
+      description: 'i made something, alright? the aftermath is secondary..',
+      to: '/posts/my-unemployed-romance'
     }
   ])
 
@@ -51,11 +59,16 @@ export const usePosts = () => {
     )
   })
 
+  const getPostBySlug = (slug: string) => {
+    return posts.value.find((post) => post.to.endsWith(slug))
+  }
+
   return {
     tags,
     posts,
     postLabels,
     activePostLabel,
-    filteredPosts
+    filteredPosts,
+    getPostBySlug
   }
 }

@@ -65,6 +65,8 @@
   })
 
   const { postLabels, activePostLabel } = usePosts()
+
+  const pageKey = computed(() => useRoute().fullPath)
 </script>
 
 <template>
@@ -120,12 +122,14 @@
         </UHeader>
       </UPageHeader>
 
-      <UPageBody class="flex w-full justify-center space-y-0 pb-0">
-        <UMain class="grid w-full max-w-6xl gap-4 lg:grid-cols-[auto_1fr]">
-          <NuxtPage />
+      <UPageBody class="flex min-w-full justify-center">
+        <UMain class="bg grid w-full max-w-6xl gap-4 lg:grid-cols-[auto_1fr]">
+          <section :key="pageKey" class="page-shell space-y-4">
+            <NuxtPage />
+          </section>
 
           <section class="space-y-4 lg:order-first">
-            <MyFace />
+            <MyFace class="page-shell" />
             <div class="relative h-full">
               <UPageCard
                 class="sticky top-4"
@@ -175,3 +179,20 @@
     </UPage>
   </UApp>
 </template>
+
+<style>
+  .page-shell {
+    animation: page-in 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes page-in {
+    from {
+      opacity: 0;
+      transform: translateY(2rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
