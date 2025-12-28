@@ -13,6 +13,8 @@ export default defineNuxtConfig({
 
   ssr: true,
 
+  pages: true,
+
   devtools: {
     enabled: true
   },
@@ -46,8 +48,6 @@ export default defineNuxtConfig({
     }
   },
 
-  image: { quality: 50, format: ['webp'] },
-
   i18n: {
     strategy: 'prefix',
     langDir: 'locales/',
@@ -71,5 +71,5 @@ export default defineNuxtConfig({
     defaultLocale: 'en'
   },
 
-  pages: true
+  image: { quality: 50, format: ['webp'] }
 })
