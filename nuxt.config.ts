@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     '@nuxt/content'
   ],
 
-  ssr: false,
+  ssr: true,
 
   pages: true,
 
