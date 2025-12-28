@@ -12,8 +12,12 @@
       : route.params.slug
   )
 
-  const { data: post } = await useAsyncData(() =>
-    queryCollection('posts').where('path', '=', `/posts/${slug.value}`).first()
+  const { data: post } = await useAsyncData(
+    () =>
+      queryCollection('posts')
+        .where('path', '=', `/posts/${slug.value}`)
+        .first(),
+    { server: true }
   )
 
   watchEffect(() => {

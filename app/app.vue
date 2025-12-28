@@ -44,9 +44,16 @@
 
   const localePath = useLocalePath()
 
+  const route = useRoute()
+
   const navigationItems = computed<NavigationMenuItem[]>(() => [
     {
-      label: 'Home'
+      label: 'Home',
+      to: '/'
+    },
+    {
+      label: 'Posts',
+      to: '/posts'
     }
   ])
 
@@ -87,7 +94,8 @@
         <UHeader
           mode="drawer"
           :ui="{
-            root: 'bg-default rounded-b-xl backdrop-blur-none'
+            root: 'bg-default rounded-b-xl backdrop-blur-none',
+            center: 'gap-4'
           }"
           :title="title"
         >
@@ -96,6 +104,11 @@
               <AppLogo class="shrink-0" aria-hidden="true" />
             </NuxtLink>
           </template>
+
+          <NuxtLink :to="localePath('/')" aria-label="Home">Home</NuxtLink>
+          <NuxtLink :to="localePath('/posts')" aria-label="Home">
+            Posts
+          </NuxtLink>
 
           <template #right>
             <ULocaleSelect

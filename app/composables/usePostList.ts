@@ -6,8 +6,13 @@ export const usePostList = () => {
 
   const { resolveBadge } = useBadges()
 
-  const { data: posts } = useAsyncData('posts', () =>
-    queryCollection('posts').order('date', 'DESC').all()
+  const { data: posts } = useAsyncData(
+    'posts',
+    () => queryCollection('posts').order('date', 'DESC').all(),
+    {
+      server: true,
+      lazy: false
+    }
   )
 
   const enrichedPosts = computed(() => {

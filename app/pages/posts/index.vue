@@ -1,5 +1,6 @@
 <script setup lang="ts">
   const { filteredPosts } = usePostList()
+  const localePath = useLocalePath()
 </script>
 
 <template>
@@ -20,7 +21,7 @@
       date: 'not-sm:text-xs',
       badge: 'not-sm:p-0 not-sm:px-1 not-sm:text-xs'
     }"
-    :to="$localePath(post.path)"
+    :to="localePath(post.path)"
     :title="post.title"
     :description="post.description"
     :date="post.date"
