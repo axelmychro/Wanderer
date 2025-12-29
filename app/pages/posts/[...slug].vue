@@ -24,7 +24,7 @@
 
     ogTitle: post.value.title,
     ogDescription: post.value.description,
-    ogImage: post.value.image,
+    ogImage: '/posts/my-unemployed-romance/image.png',
     ogType: 'article',
     ogUrl: url,
 

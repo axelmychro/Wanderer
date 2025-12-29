@@ -95,5 +95,5 @@ export default defineNuxtConfig({
 
   seo: {
     automaticDefaults: true
-  },
+  }
 })
