@@ -26,11 +26,15 @@
     useSeoMeta({
       title: post.value.title,
       description: post.value.description,
+
       ogTitle: post.value.title,
       ogDescription: post.value.description,
-      ogImage: post.value.image,
       ogType: 'article',
-      twitterCard: 'summary_large_image',
+      ogImage: post.value.image,
+      ogUrl: `https://www.wanderer.my.id/en/posts/${slug.value}`,
+
+      twitterTitle: post.value.title,
+      twitterDescription: post.value.description,
       twitterImage: post.value.image
     })
   })

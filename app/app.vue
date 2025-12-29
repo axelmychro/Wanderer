@@ -19,31 +19,19 @@
   const dir = computed(() => uiLocale.value.dir)
 
   useHead({
+    titleTemplate: (titleChunk) =>
+      titleChunk ? `${titleChunk} · eons adrift` : 'eons adrift',
+
     meta: [
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { property: 'og:site_name', content: 'Wanderer' },
+      { name: 'twitter:card', content: 'summary_large_image' }
     ],
     link: [{ rel: 'icon', href: '/favicon.ico' }],
     htmlAttrs: {
       lang,
       dir
     }
-  })
-
-  const title = 'eons adrift'
-  const description = '..how can you listen all night long?'
-
-  useSeoMeta({
-    title,
-    description,
-    ogTitle: title,
-    ogDescription: description,
-    ogSiteName: 'Wanderer',
-    ogImage: '/header.webp',
-    ogUrl: 'https://www.wanderer.my.id/en',
-    twitterImage: '/header.webp',
-    twitterCard: 'summary_large_image',
-    twitterTitle: title,
-    twitterDescription: description
   })
 
   const localePath = useLocalePath()
@@ -99,7 +87,7 @@
             root: 'bg-default rounded-b-xl backdrop-blur-none',
             center: 'gap-4'
           }"
-          :title="title"
+          title="Wanderer"
         >
           <template #title>
             <NuxtLink :to="localePath('/')" aria-label="Eons Adrift, home">
