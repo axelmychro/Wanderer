@@ -1,22 +1,6 @@
 <script setup lang="ts">
   import type { NavigationMenuItem } from '@nuxt/ui'
-  import * as locales from '@nuxt/ui/locale'
-
-  const { locale, setLocale } = useI18n()
   const colorMode = useColorMode()
-
-  const supportedLocales = {
-    en: locales.en,
-    ms: locales.ms,
-    id: locales.id
-  }
-
-  const uiLocale = computed(() => {
-    return supportedLocales[locale.value as keyof typeof supportedLocales]
-  })
-
-  const lang = computed(() => uiLocale.value.code)
-  const dir = computed(() => uiLocale.value.dir)
 
   useHead({
     meta: [
@@ -24,8 +8,8 @@
     ],
     link: [{ rel: 'icon', href: '/favicon.ico' }],
     htmlAttrs: {
-      lang,
-      dir
+      lang: 'en',
+      dir: 'ltr'
     }
   })
 
@@ -43,8 +27,6 @@
     twitterCard: 'summary_large_image'
   })
 
-  const localePath = useLocalePath()
-
   const navigationItems = computed<NavigationMenuItem[]>(() => [
     {
       label: 'Home',
@@ -55,11 +37,6 @@
       to: '/posts'
     }
   ])
-
-  const localeLabel = computed(() => {
-    const currentLocaleCode = locale.value.toUpperCase()
-    return `Select language (current: ${currentLocaleCode})`
-  })
 
   const themeLabel = computed(() => {
     if (colorMode.preference === 'dark') {
@@ -73,10 +50,13 @@
   const { postLabels, activePostLabel } = usePostList()
 
   const pageKey = computed(() => useRoute().fullPath)
+
+  const hydrated = ref(false)
+  onMounted(() => (hydrated.value = true))
 </script>
 
 <template>
-  <UApp :locale="uiLocale" :toaster="{ position: 'top-center' }">
+  <UApp :toaster="{ position: 'top-center' }">
     <div
       class="absolute inset-0 -z-10 max-h-64 min-w-full bg-[url('/header.webp')] bg-cover bg-center lg:max-h-96"
       aria-hidden="true"
@@ -99,28 +79,15 @@
           title="Wanderer"
         >
           <template #title>
-            <NuxtLink :to="localePath('/')" aria-label="Eons Adrift, home">
+            <NuxtLink to="/" aria-label="Eons Adrift, home">
               <AppLogo class="shrink-0" aria-hidden="true" />
             </NuxtLink>
           </template>
 
-          <NuxtLink :to="localePath('/')" aria-label="Home">Home</NuxtLink>
-          <NuxtLink :to="localePath('/posts')" aria-label="Home">
-            Posts
-          </NuxtLink>
+          <NuxtLink to="/" aria-label="Home">Home</NuxtLink>
+          <NuxtLink to="/posts" aria-label="Home">Posts</NuxtLink>
 
           <template #right>
-            <ULocaleSelect
-              variant="ghost"
-              :ui="{ value: 'hidden', base: 'py-4' }"
-              :label-key="'code'"
-              :model-value="locale"
-              :locales="Object.values(supportedLocales)"
-              :aria-label="localeLabel"
-              @update:model-value="
-                (value: string) => setLocale(value as 'en' | 'ms' | 'id')
-              "
-            />
             <UColorModeButton :aria-label="themeLabel" />
           </template>
 

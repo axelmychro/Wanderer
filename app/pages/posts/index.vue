@@ -1,6 +1,5 @@
 <script setup lang="ts">
   const { filteredPosts } = usePostList()
-  const localePath = useLocalePath()
 </script>
 
 <template>
@@ -14,18 +13,16 @@
     v-else
     :key="post.path"
     :ui="{
-      header: 'hidden',
       body: 'p-2 sm:p-2',
       title: 'not-sm:text-base',
       description: 'not-sm:text-sm',
       date: 'not-sm:text-xs',
       badge: 'not-sm:p-0 not-sm:px-1 not-sm:text-xs'
     }"
-    :to="localePath(post.path)"
+    :to="post.path"
     :title="post.title"
     :description="post.description"
     :date="post.date"
-    :image="post.image"
     :badge="post.badge"
   />
 </template>

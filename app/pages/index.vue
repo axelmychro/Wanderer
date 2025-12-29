@@ -1,6 +1,5 @@
 <script setup lang="ts">
   const { filteredPosts } = usePostList()
-  const localePath = useLocalePath()
 
   useSeoMeta({
     title: 'Home'
@@ -22,7 +21,7 @@
       body: post.image ? 'lg:pr-4' : 'lg:px-4',
       image: 'object-center'
     }"
-    :to="localePath(post.path)"
+    :to="post.path"
     :title="post.title"
     :description="post.description"
     :date="post.date"
