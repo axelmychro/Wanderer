@@ -14,6 +14,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
+  "eslint.useFlatConfig": true,
   "eslint.format.enable": false,
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

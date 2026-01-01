@@ -15,9 +15,9 @@ export default defineNuxtConfig({
 
   pages: true,
 
-  devtools: {
-    enabled: true
-  },
+  devtools: { enabled: true },
+
+  compatibilityDate: '2025-01-15',
 
   app: {
     pageTransition: {
@@ -36,8 +36,6 @@ export default defineNuxtConfig({
     url: 'https://www.wanderer.my.id',
     name: 'Wanderer'
   },
-
-  compatibilityDate: '2025-01-15',
 
   nitro: {
     prerender: {

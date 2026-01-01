@@ -8,11 +8,8 @@
     meta: [
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ],
-    link: [{ rel: 'icon', href: '/favicon.ico' }],
-    htmlAttrs: {
-      lang: 'en',
-      dir: 'ltr'
-    }
+    htmlAttrs: { lang: 'en', dir: 'ltr' },
+    link: [{ rel: 'icon', href: '/favicon.ico' }]
   })
 
   const siteTitle = siteConfig.title
@@ -24,9 +21,12 @@
 
     ogSiteName: siteConfig.name,
     ogType: 'website',
-    ogImage: '/header.webp',
+    ogImage: siteConfig.image,
 
-    twitterCard: 'summary_large_image'
+    twitterCard: 'summary_large_image',
+    twitterImage: siteConfig.image,
+    twitterTitle: siteConfig.title,
+    twitterDescription: siteConfig.description
   })
 
   const navigationItems = computed<NavigationMenuItem[]>(() => [
@@ -84,7 +84,7 @@
         >
           <template #title>
             <NuxtLink to="/" aria-label="Eons Adrift, home">
-              <AppLogo class="" aria-hidden="true" />
+              <AppLogo aria-hidden="true" />
             </NuxtLink>
           </template>
 
