@@ -7,10 +7,10 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "nuxt typecheck",
-    "scoldme": "pnpm lint && pnpm typecheck",
+    "scoldme": "pnpm install && pnpm lint && pnpm typecheck",
     "build": "nuxt cleanup && nuxt build",
     "preview": "nuxt preview",
-    "precommit": "pnpm install && pnpm scoldme && pnpm build && pnpm preview"
+    "precommit": "pnpm scoldme && pnpm build && pnpm preview"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.82",

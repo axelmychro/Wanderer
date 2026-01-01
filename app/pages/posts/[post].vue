@@ -27,15 +27,17 @@
   useSeoMeta({
     title: seoTitle,
     description: seoDescription,
-    ogTitle: seoTitle,
-    ogDescription: seoDescription,
+
     ogUrl: seoUrl,
     ogType: 'article',
     ogImage: seoImage,
+    ogTitle: seoTitle,
+    ogDescription: seoDescription,
+
     twitterCard: 'summary_large_image',
+    twitterImage: seoImage,
     twitterTitle: seoTitle,
-    twitterDescription: seoDescription,
-    twitterImage: seoImage
+    twitterDescription: seoDescription
   })
 
   const formattedDate = computed(() =>
@@ -48,13 +50,25 @@
       : ''
   )
 
+  const copyToClipboard = async () => {
+    const { add } = useToast()
+
+    try {
+      await navigator.clipboard.writeText(seoUrl.value)
+      add({ title: 'Copied to clipboard!' })
+    } catch (err) {
+      add({ title: 'Failed to copy!' })
+      console.error('Failed to copy:', err)
+    }
+  }
+
   const shareLinks = computed(() => {
     const canonicalUrl = seoUrl.value
     const canonicalTitle = seoTitle.value
 
     return [
       {
-        key: 'x',
+        key: 'twitter',
         label: 'X',
         icon: 'i-devicon-twitter',
         to: `https://twitter.com/intent/tweet?url=${encodeURIComponent(canonicalUrl)}&text=${encodeURIComponent(canonicalTitle)}`
@@ -88,7 +102,10 @@
 </script>
 
 <template>
-  <UCard v-if="post" :ui="{ root: 'bg-default rounded-lg' }">
+  <UCard
+    v-if="post"
+    :ui="{ root: 'bg-default rounded-lg', footer: 'flex flex-wrap gap-2' }"
+  >
     <template #header>
       <NuxtImg
         :src="post.image"
@@ -114,29 +131,30 @@
     <ContentRenderer :value="post" />
 
     <template #footer>
-      <div class="flex flex-wrap gap-2">
-        <UFieldGroup>
-          <UButton label="share ts!" color="neutral" variant="subtle" />
-          <UTooltip text="copy to clipboard">
-            <UButton color="neutral" variant="solid" icon="i-lucide-link" />
-          </UTooltip>
-        </UFieldGroup>
+      <UTooltip text="Copy to clipboard">
+        <UButton
+          label="share ts!"
+          color="neutral"
+          variant="solid"
+          icon="i-lucide-link"
+          @click="copyToClipboard"
+        />
+      </UTooltip>
 
-        <UFieldGroup>
-          <UButton
-            v-for="link in shareLinks"
-            :key="link.key"
-            :to="link.to"
-            :icon="link.icon"
-            color="neutral"
-            variant="subtle"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span class="sr-only">{{ link.label }}</span>
-          </UButton>
-        </UFieldGroup>
-      </div>
+      <UFieldGroup>
+        <UButton
+          v-for="link in shareLinks"
+          :key="link.key"
+          :to="link.to"
+          :icon="link.icon"
+          color="neutral"
+          variant="subtle"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="sr-only">{{ link.label }}</span>
+        </UButton>
+      </UFieldGroup>
     </template>
   </UCard>
 </template>

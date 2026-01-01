@@ -4,7 +4,6 @@ date: 2025-12-27
 image: /posts/my-unemployed-romance/image.png
 title: my unemployed romance
 description: i made something, alright? the aftermath is secondary..
-ogImage: /posts/my-unemployed-romance/image.png
 ---
 
 do you hear the voices too? "find side hustles", "go freelance", "get some experience"? then you are never alone!

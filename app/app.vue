@@ -60,7 +60,7 @@
 </script>
 
 <template>
-  <UApp :toaster="{ position: 'top-center' }">
+  <UApp>
     <div
       class="absolute inset-0 -z-10 max-h-64 min-w-full bg-[url('/header.webp')] bg-cover bg-center lg:max-h-128"
       aria-hidden="true"

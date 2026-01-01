@@ -28,7 +28,7 @@
     :links="styledLinks"
   >
     <template #top>
-      <NuxtLink>
+      <NuxtLink to="/about">
         <NuxtImg
           :src="profileConfig.avatar"
           format="webp"
