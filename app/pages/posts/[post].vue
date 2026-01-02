@@ -1,104 +1,104 @@
 <script setup lang="ts">
-  const route = useRoute()
-  const routedPath = route.path
+const route = useRoute()
+const routedPath = route.path
 
-  const { data: post } = await useAsyncData(
-    () => `post:${routedPath}`,
-    () => queryCollection('posts').path(routedPath).first(),
-    { default: () => null }
-  )
+const { data: post } = await useAsyncData(
+  () => `post:${routedPath}`,
+  () => queryCollection('posts').path(routedPath).first(),
+  { default: () => null }
+)
 
-  if (import.meta.server && !post.value) {
-    throw createError({ statusCode: 404 })
+if (import.meta.server && !post.value) {
+  throw createError({ statusCode: 404 })
+}
+
+const { badges } = useBadges()
+const badge = computed(() =>
+  post.value ? badges[post.value.badge as keyof typeof badges] : null
+)
+
+const seoTitle = computed(() => post.value?.title || 'Untitled post')
+const seoDescription = computed(
+  () => post.value?.description || 'Undescribed post'
+)
+const seoImage = computed(() => post.value?.image || '/header.webp')
+const seoUrl = computed(() => `https://www.wanderer.my.id${routedPath}`)
+
+useSeoMeta({
+  title: seoTitle,
+  description: seoDescription,
+
+  ogUrl: seoUrl,
+  ogType: 'article',
+  ogImage: seoImage,
+  ogTitle: seoTitle,
+  ogDescription: seoDescription,
+
+  twitterCard: 'summary_large_image',
+  twitterImage: seoImage,
+  twitterTitle: seoTitle,
+  twitterDescription: seoDescription
+})
+
+const formattedDate = computed(() =>
+  post.value
+    ? new Intl.DateTimeFormat('en', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      }).format(new Date(post.value.date))
+    : ''
+)
+
+const copyToClipboard = async () => {
+  const { add } = useToast()
+
+  try {
+    await navigator.clipboard.writeText(seoUrl.value)
+    add({ title: 'Copied to clipboard!' })
+  } catch (err) {
+    add({ title: 'Failed to copy!' })
+    console.error('Failed to copy:', err)
   }
+}
 
-  const { badges } = useBadges()
-  const badge = computed(() =>
-    post.value ? badges[post.value.badge as keyof typeof badges] : null
-  )
+const shareLinks = computed(() => {
+  const canonicalUrl = seoUrl.value
+  const canonicalTitle = seoTitle.value
 
-  const seoTitle = computed(() => post.value?.title || 'Untitled post')
-  const seoDescription = computed(
-    () => post.value?.description || 'Undescribed post'
-  )
-  const seoImage = computed(() => post.value?.image || '/header.webp')
-  const seoUrl = computed(() => `https://www.wanderer.my.id${routedPath}`)
-
-  useSeoMeta({
-    title: seoTitle,
-    description: seoDescription,
-
-    ogUrl: seoUrl,
-    ogType: 'article',
-    ogImage: seoImage,
-    ogTitle: seoTitle,
-    ogDescription: seoDescription,
-
-    twitterCard: 'summary_large_image',
-    twitterImage: seoImage,
-    twitterTitle: seoTitle,
-    twitterDescription: seoDescription
-  })
-
-  const formattedDate = computed(() =>
-    post.value
-      ? new Intl.DateTimeFormat('en', {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric'
-        }).format(new Date(post.value.date))
-      : ''
-  )
-
-  const copyToClipboard = async () => {
-    const { add } = useToast()
-
-    try {
-      await navigator.clipboard.writeText(seoUrl.value)
-      add({ title: 'Copied to clipboard!' })
-    } catch (err) {
-      add({ title: 'Failed to copy!' })
-      console.error('Failed to copy:', err)
+  return [
+    {
+      key: 'twitter',
+      label: 'X',
+      icon: 'i-devicon-twitter',
+      to: `https://twitter.com/intent/tweet?url=${encodeURIComponent(canonicalUrl)}&text=${encodeURIComponent(canonicalTitle)}`
+    },
+    {
+      key: 'facebook',
+      label: 'Facebook',
+      icon: 'i-lucide-facebook',
+      to: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalUrl)}`
+    },
+    {
+      key: 'whatsapp',
+      label: 'WhatsApp',
+      icon: 'i-mingcute-whatsapp-line',
+      to: `https://wa.me/?text=${encodeURIComponent(`${canonicalTitle} ${canonicalUrl}`)}`
+    },
+    {
+      key: 'telegram',
+      label: 'Telegram',
+      icon: 'i-lucide-send',
+      to: `https://t.me/share/url?url=${encodeURIComponent(canonicalUrl)}&text=${encodeURIComponent(canonicalTitle)}`
+    },
+    {
+      key: 'linkedin',
+      label: 'LinkedIn',
+      icon: 'i-lucide-linkedin',
+      to: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonicalUrl)}`
     }
-  }
-
-  const shareLinks = computed(() => {
-    const canonicalUrl = seoUrl.value
-    const canonicalTitle = seoTitle.value
-
-    return [
-      {
-        key: 'twitter',
-        label: 'X',
-        icon: 'i-devicon-twitter',
-        to: `https://twitter.com/intent/tweet?url=${encodeURIComponent(canonicalUrl)}&text=${encodeURIComponent(canonicalTitle)}`
-      },
-      {
-        key: 'facebook',
-        label: 'Facebook',
-        icon: 'i-lucide-facebook',
-        to: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalUrl)}`
-      },
-      {
-        key: 'whatsapp',
-        label: 'WhatsApp',
-        icon: 'i-mingcute-whatsapp-line',
-        to: `https://wa.me/?text=${encodeURIComponent(`${canonicalTitle} ${canonicalUrl}`)}`
-      },
-      {
-        key: 'telegram',
-        label: 'Telegram',
-        icon: 'i-lucide-send',
-        to: `https://t.me/share/url?url=${encodeURIComponent(canonicalUrl)}&text=${encodeURIComponent(canonicalTitle)}`
-      },
-      {
-        key: 'linkedin',
-        label: 'LinkedIn',
-        icon: 'i-lucide-linkedin',
-        to: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonicalUrl)}`
-      }
-    ] as const
-  })
+  ] as const
+})
 </script>
 
 <template>

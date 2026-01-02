@@ -14,10 +14,7 @@ export default defineNuxtConfig({
   ssr: true,
 
   pages: true,
-
   devtools: { enabled: true },
-
-  compatibilityDate: '2025-01-15',
 
   app: {
     pageTransition: {
@@ -26,22 +23,11 @@ export default defineNuxtConfig({
     }
   },
 
-  typescript: {
-    strict: true
-  },
-
   css: ['~/assets/css/main.css'],
 
   site: {
     url: 'https://www.wanderer.my.id',
     name: 'Wanderer'
-  },
-
-  nitro: {
-    prerender: {
-      crawlLinks: true,
-      routes: ['/']
-    }
   },
 
   colorMode: {
@@ -53,6 +39,19 @@ export default defineNuxtConfig({
     experimental: {
       nativeSqlite: true
     }
+  },
+
+  compatibilityDate: '2025-01-15',
+
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/']
+    }
+  },
+
+  typescript: {
+    strict: true
   },
 
   icon: {

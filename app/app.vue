@@ -1,62 +1,62 @@
 <script setup lang="ts">
-  import type { NavigationMenuItem } from '@nuxt/ui'
-  import { siteConfig } from './data'
+import type { NavigationMenuItem } from '@nuxt/ui'
+import { siteConfig } from './data'
 
-  const colorMode = useColorMode()
+const colorMode = useColorMode()
 
-  useHead({
-    meta: [
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
-    ],
-    htmlAttrs: { lang: 'en', dir: 'ltr' },
-    link: [{ rel: 'icon', href: '/favicon.ico' }]
-  })
+useHead({
+  meta: [
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+  ],
+  htmlAttrs: { lang: 'en', dir: 'ltr' },
+  link: [{ rel: 'icon', href: '/favicon.ico' }]
+})
 
-  const siteTitle = siteConfig.title
-  const siteDescription = siteConfig.description
+const siteTitle = siteConfig.title
+const siteDescription = siteConfig.description
 
-  useSeoMeta({
-    titleTemplate: `%s | ${siteTitle}`,
-    description: siteDescription,
+useSeoMeta({
+  titleTemplate: `%s | ${siteTitle}`,
+  description: siteDescription,
 
-    ogSiteName: siteConfig.name,
-    ogType: 'website',
-    ogImage: siteConfig.image,
+  ogSiteName: siteConfig.name,
+  ogType: 'website',
+  ogImage: siteConfig.image,
 
-    twitterCard: 'summary_large_image',
-    twitterImage: siteConfig.image,
-    twitterTitle: siteConfig.title,
-    twitterDescription: siteConfig.description
-  })
+  twitterCard: 'summary_large_image',
+  twitterImage: siteConfig.image,
+  twitterTitle: siteConfig.title,
+  twitterDescription: siteConfig.description
+})
 
-  const navigationItems = computed<NavigationMenuItem[]>(() => [
-    {
-      label: 'Home',
-      to: '/'
-    },
-    {
-      label: 'Posts',
-      to: '/posts'
-    },
-    {
-      label: 'About',
-      to: '/about'
-    }
-  ])
+const navigationItems = computed<NavigationMenuItem[]>(() => [
+  {
+    label: 'Home',
+    to: '/'
+  },
+  {
+    label: 'Posts',
+    to: '/posts'
+  },
+  {
+    label: 'About',
+    to: '/about'
+  }
+])
 
-  const themeLabel = computed(() => {
-    if (colorMode.preference === 'dark') {
-      return 'Switch to light mode'
-    } else if (colorMode.preference === 'light') {
-      return 'Switch to dark mode'
-    }
-    return 'Toggle color mode'
-  })
+const themeLabel = computed(() => {
+  if (colorMode.preference === 'dark') {
+    return 'Switch to light mode'
+  } else if (colorMode.preference === 'light') {
+    return 'Switch to dark mode'
+  }
+  return 'Toggle color mode'
+})
 
-  const { postLabels, activePostLabel } = usePostList()
+const { postLabels, activePostLabel } = usePostList()
 
-  const hydrated = ref(false)
-  onMounted(() => (hydrated.value = true))
+const hydrated = ref(false)
+onMounted(() => (hydrated.value = true))
 </script>
 
 <template>

@@ -17,7 +17,7 @@ export const usePostList = () => {
   const enrichedPosts = computed(() => {
     if (!posts.value) return []
 
-    return posts.value.map((post) => ({
+    return posts.value.map(post => ({
       ...post,
       badge: resolveBadge(post.badge)
     }))
@@ -27,7 +27,7 @@ export const usePostList = () => {
     if (!activePostLabel.value) return enrichedPosts.value
 
     return enrichedPosts.value.filter(
-      (post) => post.badge?.label === activePostLabel.value
+      post => post.badge?.label === activePostLabel.value
     )
   })
 

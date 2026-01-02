@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  const toggleSilhouette = ref(false)
+const toggleSilhouette = ref(false)
 </script>
 
 <template>

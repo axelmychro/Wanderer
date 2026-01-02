@@ -1,36 +1,29 @@
-<script lang="ts" setup></script>
-
 <template>
   <div class="bg-default rounded-lg p-4">
     <h1 class="text-highlighted text-2xl font-semibold text-pretty">about</h1>
 
     <p class="mt-4 text-base text-pretty">
-      so what is this blog all about? well, maybe you haven't read the footer
-      just yet.
+      so what is this blog all about? well, maybe you haven't read the footer just yet.
     </p>
 
     <p class="mt-2 text-base text-pretty">
-      my name's Axel, i'm a computer science student at Fasilkom-TI, Universitas
-      Sumatera Utara who really just loves
+      my name's Axel, i'm a computer science student at Fasilkom-TI, Universitas Sumatera Utara who
+      really just loves
       <span class="text-primary">Wanderer</span>
       (look i just can't keep hightlighting him help me)
     </p>
 
     <p class="mt-2 text-base text-pretty">
-      i'm interested in the frontend development, knows HTML, CSS, JS basic.
-      built
-      <NuxtLink to="https://github.com/axelmychro/Axel-Ramadhan">
-        my portfolio
-      </NuxtLink>
+      i'm interested in the frontend development, knows HTML, CSS, JS basic. built
+      <NuxtLink to="https://github.com/axelmychro/Axel-Ramadhan"> my portfolio </NuxtLink>
       with Vue and
       <NuxtLink to="https://github.com/axelmychro/Wanderer">this blog</NuxtLink>
       with Nuxt
     </p>
 
     <p class="mt-2 text-base text-pretty">
-      currently trying to actually "Type" the script in TS (like, what do you
-      mean this string is an object???) so i don't mess up every workspace i
-      touch
+      currently trying to actually "Type" the script in TS (like, what do you mean this string is an
+      object???) so i don't mess up every workspace i touch
     </p>
 
     <h2 class="text-highlighted mt-8 mb-2 text-xl font-semibold text-pretty">
@@ -89,5 +82,3 @@
     </div>
   </div>
 </template>
-
-<style scoped></style>

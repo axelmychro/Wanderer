@@ -1,9 +1,9 @@
 <script setup lang="ts">
-  const { filteredPosts } = usePostList()
+const { filteredPosts } = usePostList()
 
-  useSeoMeta({
-    title: 'Home'
-  })
+useSeoMeta({
+  title: 'Home'
+})
 </script>
 
 <template>

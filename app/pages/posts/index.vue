@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  const { filteredPosts } = usePostList()
+const { filteredPosts } = usePostList()
 </script>
 
 <template>
