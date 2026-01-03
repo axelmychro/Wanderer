@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { profileConfig } from '~/data'
+import { profileConfig } from '~/data/yourInformation'
 import type { ButtonProps } from '@nuxt/ui'
 
-const styledLinks = computed<ButtonProps[]>(
+const styledLinks = computed(
   () =>
-    profileConfig.links?.map(link => ({
+    profileConfig.links?.map<ButtonProps>(link => ({
       ...link,
       target: '_blank',
       color: 'primary',

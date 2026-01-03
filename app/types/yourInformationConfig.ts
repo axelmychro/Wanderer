@@ -1,6 +1,6 @@
 export type SiteConfig = {
   name: string
-  lang: `${string}-${string}` | string
+  lang: string
   title: string
   description: string
   image: string

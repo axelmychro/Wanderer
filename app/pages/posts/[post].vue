@@ -71,19 +71,19 @@ const shareLinks = computed(() => {
     {
       key: 'twitter',
       label: 'X',
-      icon: 'i-devicon-twitter',
+      icon: 'i-simple-icons-x',
       to: `https://twitter.com/intent/tweet?url=${encodeURIComponent(canonicalUrl)}&text=${encodeURIComponent(canonicalTitle)}`,
     },
     {
       key: 'facebook',
       label: 'Facebook',
-      icon: 'i-lucide-facebook',
+      icon: 'i-simple-icons-facebook',
       to: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalUrl)}`,
     },
     {
       key: 'whatsapp',
       label: 'WhatsApp',
-      icon: 'i-mingcute-whatsapp-line',
+      icon: 'i-simple-icons-whatsapp',
       to: `https://wa.me/?text=${encodeURIComponent(`${canonicalTitle} ${canonicalUrl}`)}`,
     },
     {
@@ -95,7 +95,7 @@ const shareLinks = computed(() => {
     {
       key: 'linkedin',
       label: 'LinkedIn',
-      icon: 'i-lucide-linkedin',
+      icon: 'i-simple-icons-linkedin',
       to: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonicalUrl)}`,
     },
   ] as const
@@ -109,6 +109,7 @@ const shareLinks = computed(() => {
   >
     <template #header>
       <NuxtImg
+        v-if="post.image"
         :src="post.image"
         class="pointer-events-none relative aspect-video w-full overflow-hidden object-contain"
       />

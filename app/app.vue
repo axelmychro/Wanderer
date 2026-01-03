@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from '@nuxt/ui'
-import { siteConfig } from './data'
+import { siteConfig } from './data/yourInformation'
+import MyProfile from './components/MyProfile.vue'
 
 const colorMode = useColorMode()
 
 useHead({
-  meta: [
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-  ],
+  meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
   htmlAttrs: { lang: 'en', dir: 'ltr' },
   link: [{ rel: 'icon', href: '/favicon.ico' }],
 })
@@ -118,7 +117,7 @@ onMounted(() => (hydrated.value = true))
           </section>
 
           <section class="shrink-0 space-y-4 lg:order-first">
-            <MyFace class="animate-enter" />
+            <MyProfile class="animate-enter" />
 
             <div class="relative h-full">
               <UPageCard
@@ -154,18 +153,18 @@ onMounted(() => (hydrated.value = true))
 </template>
 
 <style>
-  .animate-enter {
-    animation: page-in 600ms cubic-bezier(0.22, 1, 0.33, 1) both;
-  }
+.animate-enter {
+  animation: page-in 600ms cubic-bezier(0.22, 1, 0.33, 1) both;
+}
 
-  @keyframes page-in {
-    from {
-      opacity: 0;
-      transform: translateY(2rem);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 </style>

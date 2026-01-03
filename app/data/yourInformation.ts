@@ -1,5 +1,4 @@
-import type { SiteConfig, ProfileConfig } from '~/types'
-
+// Configure your informations here
 export const siteConfig: SiteConfig = {
   name: 'Wanderer',
   lang: 'en',
@@ -7,6 +6,8 @@ export const siteConfig: SiteConfig = {
   description: 'anywhere the wind blows doesn\'t really matter to me',
   image: '/header.webp',
 }
+
+// You can always add more items into the links
 export const profileConfig: ProfileConfig = {
   author: 'Axel',
   avatar: '/avatar.png',
@@ -18,11 +19,17 @@ export const profileConfig: ProfileConfig = {
     },
     {
       to: 'https://www.linkedin.com/in/axelramadhan',
-      icon: 'i-lucide-linkedin',
+      icon: 'i-simple-icons-linkedin',
     },
     {
       to: 'https://github.com/axelmychro',
-      icon: 'i-mingcute-github-line',
+      icon: 'i-simple-icons-github',
     },
+    // {
+    //   to: 'https:/**.*/**',
+    //   icon: 'i-**-*',
+    // },
   ],
 }
+
+import type { SiteConfig, ProfileConfig } from '~/types/yourInformationConfig'

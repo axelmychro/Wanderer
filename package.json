@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "nuxt dev",
     "postinstall": "nuxt prepare",
+    "format": "prettier --write .",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "nuxt typecheck",
     "scoldme": "pnpm install && pnpm lint && pnpm typecheck",
@@ -20,9 +21,11 @@
     "@nuxt/scripts": "0.13.2",
     "@nuxt/ui": "^4.3.0",
     "@nuxtjs/seo": "3.3.0",
+    "@tailwindcss/vite": "^4.1.18",
     "@unhead/vue": "^2.0.19",
     "better-sqlite3": "^12.5.0",
     "nuxt": "^4.2.2",
+    "tailwindcss": "^4.1.18",
     "zod": "^4.3.0"
   },
   "devDependencies": {
